@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keyword" content="Agronomix">
+    <meta name="description" content="Agronomix">
+    <meta name="author" content="Institut Teknologi Bandung">
+    <meta name="http-equiv" content="30">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <title>Stock Monitor</title>
+</head>
+
+<body style="background-color: #20c477;">
+    <section class="top-nav">
+        <div class="nav-img">
+            <img src="logo2.png">
+        </div>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+        </label>
+        <ul class="menu" style="top:40px">
+            <li style="border-radius: 10px 10px 0 0;"> <a href="index.php"> Home </a> </li>
+            <li> <a href="#C2" style="color: #20c477;">Stock Monitor </a> </li>
+            <li> <a href="index.php">AgriInsight </a> </li>
+            <li> <a href="index.php">AgriConnect </a></li>
+            <li style="border-radius: 0 0 10px 10px;"> <a href="logout.php">Log Out</a></li>
+        </ul>
+    </section>
+    <div class="container">
+        <div class="map">
+            <img src="agro7.png" class="temp">
+            <a href="pasar1.html"><img src="agro8.png" class="temp-inside" id="mapPointer1"></a>
+            <a href="pasar2.html"><img src="agro8a.png" class="temp-inside" id="mapPointer2"></a>
+            <a href="pasar3.html"><img src="agro8b.png" class="temp-inside" id="mapPointer3"></a>
+            <a href="pasar4.html"><img src="agro8c.png" class="temp-inside" id="mapPointer4"></a>
+        </div>
+        <br>
+        <h3 style="color:white;text-align: center;font-size: 150%;"> Pilih pasar</h3>
+    </div>
+    <script defer>
+        // Get the map container and all map pointers
+        var mapContainer = document.querySelector('.temp');
+        var mapPointers = document.querySelectorAll('.temp-inside');
+      
+        // Array of map pointers with their specific positions
+        var pointerPositions = [
+          { left: 51.5, top: 10},
+          { left: 76, top: 26 },
+          { left: 54, top: 46 },
+          { left: 21, top: 74 },
+        ];
+      
+        // Function to update the position of all map pointers
+        function updatePointerPositions() {
+          var containerRect = mapContainer.getBoundingClientRect();
+      
+          mapPointers.forEach(function (pointer, index) {
+            var pointerWidth = pointer.offsetWidth;
+            var pointerHeight = pointer.offsetHeight;
+      
+            // Get the specific position for the current pointer
+            var position = pointerPositions[index];
+      
+            // Calculate the left and top positions
+            var leftPosition = containerRect.width * (position.left / 100) - pointerWidth / 2;
+            var topPosition = containerRect.height * (position.top / 100) - pointerHeight / 2;
+      
+            // Set the position
+            pointer.style.left = leftPosition + 'px';
+            pointer.style.top = topPosition + 'px';
+          });
+        }
+      
+        // Update the pointer positions initially and on window resize
+        window.addEventListener('resize', updatePointerPositions);
+        window.addEventListener('load', updatePointerPositions);
+      </script>
+</body>
