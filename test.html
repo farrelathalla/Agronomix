@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #custom-dropdown {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #language-select {
+            display: none;
+        }
+
+        .custom-options {
+            display: block;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .custom-option {
+            padding: 5px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-option img {
+            width: 20px;
+            height: auto;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="custom-dropdown" onclick="toggleDropdown()">
+    <label for="language-select">Select Language:</label>
+    <div class="custom-options" id="language-options">
+        <div class="custom-option" onclick="changeLanguage('english', 'index.php')">
+            <img src="path/to/agro10.png" alt="English Flag"> English
+        </div>
+        <div class="custom-option" onclick="changeLanguage('indonesia', 'index2.php')">
+            <img src="path/to/agro10a.png" alt="Indonesia Flag"> Indonesia
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var options = document.getElementById("language-options");
+        options.style.display = options.style.display === "none" ? "block" : "none";
+    }
+
+    function changeLanguage(value, url) {
+        window.location.href = url;
+    }
+
+    document.addEventListener("click", function(event) {
+        var dropdown = document.getElementById("custom-dropdown");
+        if (!dropdown.contains(event.target)) {
+            document.getElementById("language-options").style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>
